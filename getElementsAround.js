@@ -99,3 +99,14 @@ function getUpperElement($el) {
     }(x, y);
 
 }
+
+/**
+ * Get the vertical distance between two DOM elements on the page.
+ * $first is the upper element; $second - element under it.
+ * @param {type} $first
+ * @param {type} $second
+ * @returns {unresolved}
+ */
+function getVertDistanceElement($first, $second) {
+   return $second[0].offsetTop - $first[0].offsetTop - $first[0].offsetHeight;
+}
