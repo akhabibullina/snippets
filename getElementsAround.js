@@ -71,3 +71,31 @@ function getElementsAround(pickedRect, current, next) {
 
     }(pickedRect, current);
 }
+
+/**
+ * The same thing BUT only able to get upper element if it is visible within
+ * current viewport. If $el is the toppest element in the vieport, you'll get null.
+ * (This is how document.elementFromPoint() works, sorry....)
+ * @param {HTMLObject} $el
+ * @returns {HTMLObject} upperBox
+ */
+function getUpperElement($el) {
+    var upperBox;
+    // Get top & left w/o scrolling offset
+    // b/c elementFromPoint returns null when window scrolled
+    var clientRect = $el[0].getBoundingClientRect();
+    var x = clientRect.left,
+        y = clientRect.top - 10;
+
+    return function _recurse(x, y) {
+        if ((upperBox && upperBox.localName !== 'body')
+            || (x < 0 && y < 0)) {
+            return upperBox;
+        }
+        y -= 10;
+        upperBox = document.elementFromPoint(x, y);
+        return _recurse(x, y);
+
+    }(x, y);
+
+}
