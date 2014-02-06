@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>elementFromPoint example</title>
+        <style>
+            #wrapper {
+                width: 1004px;
+                margin: auto auto;
+                text-align: center;
+            }
+            #result {
+                margin: auto auto;
+                padding: 20px;
+                height: 'auto';
+                width: 1004px;
+                border: 1px solid activecaption;
+                box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            }
+            #left, #right {
+                float: left;
+                width: 500px;
+                border: 1px solid activecaption;
+                box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            }
+        </style>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script type="text/javascript" src="getComputedStyle.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('body').click(function(e) {
+                    var computedStyles = $(e.target).getComputedStyle();
+                    var resultPar = $('#result p')[0];
+                    //resultPar.innerHTML = JSON.stringify(computedStyles);
+                    var i = 0;
+                    for (var prop in computedStyles) {
+                       // i++;
+                       // if (i > 40) {break;}
+                        resultPar.innerHTML = resultPar.innerHTML + prop + ': ' + computedStyles[prop] + '<br />';
+                    };
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <article id="wrapper">
+            <h2>window.getComputedStyle() x-browser support wrapper.</h2>
+            <div id="left">
+                <button onclick="changeColor('blue');">blue</button>
+            </div>
+            <div id="right">
+                <button onclick="changeColor('red');">red</button>
+            </div>
+        </article>
+        <footer id="result">
+            <h2>Results:</h2>
+            <p></p>
+        </footer>
+    </body>
+</html>
