@@ -24,3 +24,19 @@ Gets the stylesheet object in x-browser way.
 
 #### Invert.js
 A jQuery plugin that reverses the colors of the element using CSS3 effects.
+
+Example of usage:
+* Note: jquery is a dependency
+* Download the script
+* Add a script to the page that is going to use it ```  <script src="invert.js"></script> ```
+* Now it is ready to use:
+```
+      $(document).ready(function() {
+        $('body').invert();
+        $(document).on('keypress', function(event) {
+          if (event.keyCode === 32) { // space
+            $(event.target).invert('revert');
+          }
+        });
+      });
+```
